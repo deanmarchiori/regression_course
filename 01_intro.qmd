@@ -1,0 +1,54 @@
+# Introduction 
+
+## What is a model?
+Modelling is a process that is carried out across many different fields for a wide variety of reasons. Models aim to explain complex processes in as simple terms as possible. The goal of modelling may be to make predictions based on observed values, or to gain insights into the process, while accounting for multiple pieces of data.
+
+In statistics, regression models aim to quantify the relationship between an outcome and one or more explanatory variables using a mathematical equation. They are a powerful and widely used tool that can allow us to make inferences about these underlying relationships whilst accounting for background factors. 
+
+## Which type of regression should I use?
+This course will focus mostly on **linear models**: models with a single continuous outcome variable that assume the process can be described using a linear equation.
+
+:::{.callout-note}
+This does not mean that the relationships between variables must be linear. We will see later in the course how models can be extended to account for nonlinear relationships.
+:::
+
+We will use linear regression models to address a research question with real-world data. Through the course, you will learn how to fit linear regression models, interpret their outcomes, ways in which models can be extended and improved, how to check models are valid, and finally how to answer the initial research question using regression. 
+
+Later in the course, we will see how these linear models can be generalised to outcome variables beyond continuous measures, and how these model interpretations differ. Finally, we will end with a discussion about alternative models that are available beyond those covered in the course. 
+
+## Notes on R coding style
+To ensure that this course is as useful as possible to those attending, all theory will be supplemented with worked example using R software. If you have never used R before, please refer to [these introductory notes](https://sophie-a-lee.github.io/Introduction_R_Tidyverse_course/) for an introduction to the software. 
+
+There are many approaches to coding within R. In this course, we will be using the `tidyverse` approach as I have found this to be more accessible for people that are not from a coding background. This approach requires the `tidyverse` suite of packages to be installed and loaded into the current R session.
+
+If you have never downloaded `tidyverse` before, or have not used it in a long time and would like to download the latest version, run the following code in your R console:
+
+```{r}
+#| label: install-tidyverse
+#| eval: false
+
+install.packages("tidyverse")
+```
+
+:::{.callout-warning}
+`tidyverse` is a collection of 9 packages with many dependencies that must also be downloaded. If this is your first time installing `tidyverse` it may take a long time.
+
+**Do not panic at the amount of text in your console**
+
+The only messages you need to worry about are any error messages which inform you of any issues in the installation process.
+:::
+
+Once `tidyverse` is installed on your machine, use the following to load it into the current session of R:
+
+```{r}
+#| label: load-tidyverse
+#| message: false
+#| warning: false
+
+library(tidyverse)
+```
+
+:::{.callout-note}
+The command `install.packages` is only required the first time loading a new package or following any substantial updates. The `library` command must be run  every time you start an R session. To save potential issues arising from unloaded packages, put any `library` commands at the beginning of any script file.
+:::
+

@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Short course template"
+  title: "Regressions with R"
   author: "Sophie Lee"
   date: 2024-09-04
   downloads: [pdf]  
@@ -18,7 +18,11 @@ book:
         aria-label: Buy me a coffee
   chapters:
     - index.qmd
-    - chapter1.qmd
+    - 01_intro.qmd
+    - 02_pre_regression.qmd
+    - 03_linear_reg.qmd
+    - 04_glm.qmd
+    - 05_discussion.qmd
   appendices: 
     - data_description.qmd
     - exercise_solutions.qmd

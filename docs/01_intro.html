@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sophie Lee">
-<meta name="dcterms.date" content="2024-09-04">
 
-<title>Regressions with R</title>
+<title>Regressions with R - 1&nbsp; Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01_intro.html" rel="next">
+<link href="./02_pre_regression.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -149,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome!</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -163,13 +162,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome!</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01_intro.html" class="sidebar-item-text sidebar-link">
+  <a href="./01_intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -230,13 +229,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a>
-  <ul class="collapse">
-  <li><a href="#how-to-use-this-book" id="toc-how-to-use-this-book" class="nav-link" data-scroll-target="#how-to-use-this-book">How to use this book</a></li>
-  <li><a href="#data-used-in-the-course" id="toc-data-used-in-the-course" class="nav-link" data-scroll-target="#data-used-in-the-course">Data used in the course</a></li>
-  <li><a href="#feedback-and-issues" id="toc-feedback-and-issues" class="nav-link" data-scroll-target="#feedback-and-issues">Feedback and issues</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
-  </ul></li>
+  <li><a href="#what-is-a-model" id="toc-what-is-a-model" class="nav-link active" data-scroll-target="#what-is-a-model"><span class="header-section-number">1.1</span> What is a model?</a></li>
+  <li><a href="#which-type-of-regression-should-i-use" id="toc-which-type-of-regression-should-i-use" class="nav-link" data-scroll-target="#which-type-of-regression-should-i-use"><span class="header-section-number">1.2</span> Which type of regression should I use?</a></li>
+  <li><a href="#notes-on-r-coding-style" id="toc-notes-on-r-coding-style" class="nav-link" data-scroll-target="#notes-on-r-coding-style"><span class="header-section-number">1.3</span> Notes on R coding style</a></li>
   </ul>
 </nav>
     </div>
@@ -245,26 +240,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Regressions with R</h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Sophie Lee </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 4, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -274,27 +257,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome!</h1>
-<p>Welcome to the course materials for the Regressions with R short course.</p>
-<p>This course provides a comprehensive understanding of regression analysis, including the theory behind these models, their application in R, validation techniques, and the interpretation of results. The course begins with an introduction to linear regression models, before advancing to the more flexible family of generalised linear models.</p>
-<p>Topics covered as part of this course include:</p>
-<ul>
-<li>Linear regression: concepts, assumptions, application, and interpretations</li>
-<li>Diagnostics and validation of linear regression models</li>
-<li>Generalised linear models: beyond continuous outcomes</li>
-<li>Poisson regression: how to model counts and rates, and how this differs from linear regression</li>
-<li>Best practices in communicating results of regression analysis</li>
-</ul>
-<section id="how-to-use-this-book" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use-this-book">How to use this book</h2>
-<p>This book provides a combination of written explanations, code examples, and practical exercises to allow you to practice what you have learned.</p>
-<p>Code examples will be provided in code blocks, such as this one:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Code in these blocks can be copied and pasted into your R session to save time when coding. We recommend typing the code yourself to familiarise yourself with the coding process and use the copy option if you are really stuck!</p>
-<p>Throughout the book, you will see colour-coded boxes which are used to highlight important points, give warnings, or give tips such as keyboard shortcuts.</p>
+<section id="what-is-a-model" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-a-model"><span class="header-section-number">1.1</span> What is a model?</h2>
+<p>Modelling is a process that is carried out across many different fields for a wide variety of reasons. Models aim to explain complex processes in as simple terms as possible. The goal of modelling may be to make predictions based on observed values, or to gain insights into the process, while accounting for multiple pieces of data.</p>
+<p>In statistics, regression models aim to quantify the relationship between an outcome and one or more explanatory variables using a mathematical equation. They are a powerful and widely used tool that can allow us to make inferences about these underlying relationships whilst accounting for background factors.</p>
+</section>
+<section id="which-type-of-regression-should-i-use" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="which-type-of-regression-should-i-use"><span class="header-section-number">1.2</span> Which type of regression should I use?</h2>
+<p>This course will focus mostly on <strong>linear models</strong>: models with a single continuous outcome variable that assume the process can be described using a linear equation.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -305,32 +275,19 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These boxes will be used to highlight important messages, supplementing the main text.</p>
+<p>This does not mean that the relationships between variables must be linear. We will see later in the course how models can be extended to account for nonlinear relationships.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hint
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>These boxes will contain useful hints, such as keyboard shortcuts, that can make your coding life a little easier!</p>
-</div>
-</div>
-<div class="stylebox">
-<div class="stylebox-header">
-<div class="stylebox-icon">
-
-</div>
-<p>Style tip</p>
-</div>
-<div class="stylebox-body">
-<p>These boxes contain style tips to ensure that your code follows the <a href="https://style.tidyverse.org/">Tidyverse style guide</a>, making it as consistent and readable as possible.</p>
-</div>
+<p>We will use linear regression models to address a research question with real-world data. Through the course, you will learn how to fit linear regression models, interpret their outcomes, ways in which models can be extended and improved, how to check models are valid, and finally how to answer the initial research question using regression.</p>
+<p>Later in the course, we will see how these linear models can be generalised to outcome variables beyond continuous measures, and how these model interpretations differ. Finally, we will end with a discussion about alternative models that are available beyond those covered in the course.</p>
+</section>
+<section id="notes-on-r-coding-style" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="notes-on-r-coding-style"><span class="header-section-number">1.3</span> Notes on R coding style</h2>
+<p>To ensure that this course is as useful as possible to those attending, all theory will be supplemented with worked example using R software. If you have never used R before, please refer to <a href="https://sophie-a-lee.github.io/Introduction_R_Tidyverse_course/">these introductory notes</a> for an introduction to the software.</p>
+<p>There are many approaches to coding within R. In this course, we will be using the <code>tidyverse</code> approach as I have found this to be more accessible for people that are not from a coding background. This approach requires the <code>tidyverse</code> suite of packages to be installed and loaded into the current R session.</p>
+<p>If you have never downloaded <code>tidyverse</code> before, or have not used it in a long time and would like to download the latest version, run the following code in your R console:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -342,33 +299,30 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These boxes will contain warnings and highlight areas where you need to be more cautious in your coding or analysis.</p>
+<p><code>tidyverse</code> is a collection of 9 packages with many dependencies that must also be downloaded. If this is your first time installing <code>tidyverse</code> it may take a long time.</p>
+<p><strong>Do not panic at the amount of text in your console</strong></p>
+<p>The only messages you need to worry about are any error messages which inform you of any issues in the installation process.</p>
 </div>
 </div>
-<p>To make these notes as accessible as possible, they are available to view in dark mode by toggling the <img src="images/dark_mode.png" class="img-fluid"> button. They are also available to download as a PDF file using the <img src="images/pdf.png" class="img-fluid"> button.</p>
-<p>All exercise solutions are available in the <a href="./exercise_solutions.html">appendices</a>. Please attempt the exercises yourself first, making full use of R’s built in help files, <a href="https://posit.co/resources/cheatsheets/">cheatsheets</a> (where available), and example R code in this book. Going straight to the solutions to copy and paste the code without thinking will not help you after the course!</p>
-<p>Some exercises contain expandable hints, such as functions required to complete them, that can be viewed when needed. For example:</p>
-<p>:::{callout-caution collapse=“true} ## Exercise hint</p>
-<p>The functions you will need for this exercise are <code>filter</code> and <code>count</code>. :::</p>
-</section>
-<section id="data-used-in-the-course" class="level2">
-<h2 class="anchored" data-anchor-id="data-used-in-the-course">Data used in the course</h2>
-<p>The examples and exercises in these materials are based on real world data….</p>
-<p>Data for this course can be downloaded from the <code>data</code> folder of this course’s <a href="https://github.com/sophie-a-lee/regression_course">repository</a>.</p>
-<p>For more information about this data, including variable descriptions and sources, see <a href="./data_description.html">the appendix</a>.</p>
-</section>
-<section id="feedback-and-issues" class="level2">
-<h2 class="anchored" data-anchor-id="feedback-and-issues">Feedback and issues</h2>
-<p>This book is a work in progress and will be updated based on course feedback and requirements of participants. If you spot a bug or mistake in these notes, please let me know by <a href="https://github.com/sophie-a-lee/regression_course/issues">raising an issue</a>.</p>
-<p>If you enjoyed using these resources and would like to find more of them or attend a live course, please visit <a href="https://scubed.rbind.io/">my website</a>, follow me on <a href="https://x.com/SophieStats10">Twitter</a> and <a href="https://www.linkedin.com/in/sophie-a-lee/">LinkedIn</a>, or support more free resources by <a href="https://buymeacoffee.com/sophie_a_lee">buying me a coffee!</a>.</p>
-<p>If you are interested in organising a bespoke course or have consultancy opportunities you think I would be a good fit for, please <a href="https://scubed.rbind.io/contact/">get in touch!</a></p>
-</section>
-<section id="license" class="level2">
-<h2 class="anchored" data-anchor-id="license">License</h2>
-<p>I believe that science should not be behind a paywall, that is why these materials are available for free online, licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA licence</a>.</p>
+<p>Once <code>tidyverse</code> is installed on your machine, use the following to load it into the current session of R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The command <code>install.packages</code> is only required the first time loading a new package or following any substantial updates. The <code>library</code> command must be run every time you start an R session. To save potential issues arising from unloaded packages, put any <code>library</code> commands at the beginning of any script file.</p>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -927,10 +881,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Welcome!">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome!</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01_intro.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02_pre_regression.html" class="pagination-link" aria-label="Preparing for linear regression">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparing for linear regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

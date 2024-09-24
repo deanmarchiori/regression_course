@@ -1,12 +1,13 @@
 /*-- scss:defaults --*/
 $background-body: #fff1db;
-$link-body: #3AA6B9;
+$link-body: #012b3b;
 $text-body: #102c57;
 $background-header: #8e3e63;
 $text-header: #EEEDEB;
+$highlight-text: #9a3416;
 
-$background-code: #FFF5E4;
-$text-code: #43766C;
+$background-code: #CBC1AE;
+$text-code: #012b3b;
 $highlight-code: #CD5C08;
 
 $warning-box: #F85525;
@@ -28,7 +29,7 @@ $code-annotation-higlight-color: $highlight-code;
 $code-block-color: $text-code;
 
 $code-color: $highlight-code;
-$code-bg: $background-code;
+//$code-bg: $background-code;
 
 $navbar-bg: $background-header;
 $navbar-fg: $text-header;
@@ -96,4 +97,13 @@ $callout-color-tip: $tip-box;
 
 .header-section-number {
   color: $text-body;
+}
+
+.highlight {
+  color: $highlight-text;
+  font-weight: bold;
+}
+
+.centre {
+  text-align: center!important;
 }

@@ -1,0 +1,15 @@
+# Discussion
+
+Generalised linear models are powerful statistical tools that can be applied to a wide range of data and situations. The choice of the most appropriate model to address a research question will depend on the type of outcome, but also:
+
+- The intention of the model: which variables must be included to answer the research question?
+- Common sense and background knowledge: what do we know about the context of the data and what are the known confounders?
+- Parsimony: which model provides the simplest solution to our problem without losing any information?
+
+[Do not]{.highlight} choose a regression model solely based on p-values!!
+
+All models must be checked to ensure that any assumptions are met and the results are valid. All GLMs require observations to be independent of one another. This means that there is no clustering, repeated measures, or autocorrelation within the data. Where this assumption is not valid, multilevel models (also known as mixed effect, random effect, GLMMs, or hierarchical models) should be considered. 
+
+GLMs assume that the relationships between covariates and the (link-transformed) outcome are linear. Where this is not the case, covariates can be transformed before they are included into the model, for example polynomial regression. Where the relationship is more complex or unknown, consider generalised [additive]{.highlight} models (GAMs), which are able to for non-linear data.
+
+Finally, note that the models shown in these notes and exercise solutions are not definitive. Choice of model is often subjective and context-specific. 
