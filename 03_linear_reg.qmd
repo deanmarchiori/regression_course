@@ -422,19 +422,19 @@ A better approach to checking the linearity assumption of regression models is t
 ```{r}
 #| label: linearity
 
-penguins_resid <- lm_flipper_spec$model %>% # <1>
+penguins_resid <- lm_flipper_spec$model %>% #<1>
   mutate(residuals_flipper_spec = resid(lm_flipper_spec))
 
 ggplot(data = penguins_resid) +
   geom_point(aes(x = flipper_length_mm, y = residuals_flipper_spec)) +
   labs(y = "residuals", x = "flipper length (mm)") +
-  geom_hline(yintercept = 0, colour = "red") + # <2>
+  geom_hline(yintercept = 0, colour = "red") + #<2>
   theme_light(base_size = 12)
 
 ggplot(data = penguins_resid) +
   geom_point(aes(x = species, y = residuals_flipper_spec)) +
   labs(y = "residuals", x = "species") +
-  geom_hline(yintercept = 0, colour = "red") + # <3>
+  geom_hline(yintercept = 0, colour = "red") + #<3>
   theme_light(base_size = 12)
 ```
 
@@ -534,7 +534,7 @@ Using everything you have learned up to this point, use linear regression to ans
 
 [Is body mass of penguins in the Palmer Archipelago related to their flipper size?]{.highlight}
 
-:::{callout-caution collapse="true"}
+:::{.callout-caution collapse="true"}
 ## Exercise hint
 
 Explore the data to identify variables that are likely to be related to body mass that could be confounders. This includes visualising and summarising the sameple.

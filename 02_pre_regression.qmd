@@ -164,7 +164,7 @@ The scatterplot shows a strong, positive, linear relationship between body mass 
 Using appropriate visualisations, investigate whether there are other variables that may explain differences in body mass. Consider whether any of these variables may be confounding the relationship between body mass and flipper length, and whether they should be included in the model.
 
 :::{.callout-caution collapse="true"}
-## Hint
+## Exercise hint
 
 Consider changing the colour of points in @fig-scatter to investigate whether the relationship between body mass and flipper length differs between species or sex.
 

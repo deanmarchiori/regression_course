@@ -32,5 +32,5 @@ format:
     theme:
       light: [pulse, style.scss]
       dark: darkly
-  pdf:
-    documentclass: scrreprt
+  pdf: 
+    theme: scrbook
