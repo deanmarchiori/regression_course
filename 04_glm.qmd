@@ -128,7 +128,7 @@ $ln(a − b) = ln(a) \div ln(b)$
 e.g., $ln(5) = ln(9 − 4) = ln(9) \div ln(4)$
 
 ### Poisson regression for count data
-To demonstrate poisson regression, we will be using data from the cancer registry and census in the USA from 2015. This data can be downloaded from the [course repository](https://github.com/sophie-a-lee/regression_course/data) and more information about the dataset can be found in the [course appendix](data_description.qmd).
+To demonstrate poisson regression, we will be using data from the cancer registry and census in the USA from 2015. This data can be downloaded from the [course repository](https://github.com/sophie-a-lee/regression_course/tree/main/data) and more information about the dataset can be found in the [course appendix](data_description.qmd).
 
 The research question we will aim to answer using this data is:
 

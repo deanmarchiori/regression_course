@@ -5,7 +5,6 @@ project:
 book:
   title: "Regressions with R"
   author: "Sophie Lee"
-  date: 2024-09-04
   downloads: [pdf]  
   search: true
   navbar:
