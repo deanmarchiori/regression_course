@@ -1,0 +1,45 @@
+# Setup
+
+## Setting up R  
+
+To get started, ensure you have a recent version or R and RStudio installed. 
+
+### Step 1: Install R  
+
+To install R head to [https://cran.rstudio.com/](https://cran.rstudio.com/) and follow the instructions for your operating system. 
+
+### Step 2: Install RStudio  
+
+Next, install RStudio Desktop IDE at [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/).
+
+### Packages  
+
+To install the required packages, we run the `install.packages("packagename")` function.
+
+```{r}
+#| eval: false
+# Install the required R packages for our analysis (first time use only)
+install.packages("tidyverse")
+install.packages("palmerpenguins")
+install.packages("Metrics")
+install.packages("car")
+install.packages("skimr")
+install.packages("AER")
+```
+
+:::{.callout-note}
+The command `install.packages()` is only required the first time loading a new package or following any substantial updates. The `library()` command must be run  every time you start an R session. To save potential issues arising from unloaded packages, put any `library()` commands at the beginning of any script file.
+:::
+
+You should be able to now run the following commands: 
+
+```{r}
+#| eval: false
+# Load the installed packages at the start of each session
+library(tidyverse)
+library(palmerpenguins)
+library(Metrics)
+library(car)
+library(skimr)
+library(AER)
+```

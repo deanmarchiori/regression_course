@@ -1,0 +1,122 @@
+---
+title: "Mathematical Derivation of OLS"
+format: html
+---
+
+The coefficient values for simple linear regression can be derived using a procedure known as Ordinary Least Squares (OLS). 
+
+For an assumed model: 
+
+$$
+y_i = \beta_0 + x_i\beta_1 + \epsilon_i 
+$$  
+
+We can generate predictions in the form: 
+
+$$
+\hat{y_i} = \beta_0 + x_i\beta_i
+$$  
+
+The residuals for our model $\epsilon_i = y_i - \hat{y_i}$ can be written as: 
+
+$$
+\epsilon_i = y_i - \beta_0 - \beta_1x_i
+$$  
+
+To find the sum of squared residuals (RSS) for all records we have:  
+
+$$
+\sum_{i=1}^N \epsilon_i^2 = \sum_{i=1}^N (y_i - \beta_0 - \beta_1x_i)^2
+$$ 
+
+We want to find $\beta_0$ and $\beta_1$ such that we minimise the RSS. This occurs when we set the partial derivative with respect to both $\beta_0$ and $\beta_1$ to zero.  
+
+$$
+\frac{\partial}{\partial\beta_0} \sum_{i=1}^N (y_i - \beta_0 - \beta_1x_i)^2 = 0
+$$
+
+$$
+\frac{\partial}{\partial\beta_1} \sum_{i=1}^N (y_i - \beta_0 - \beta_1x_i)^2 = 0
+$$  
+
+This gives us:  
+
+$$
+-2 \sum_{i=1}^N (y_i - \beta_0 - \beta_1x_i) = 0
+$${#eq-1}
+
+$$
+-2x_i \sum_{i=1}^N (y_i - \beta_0 - \beta_1x_i) = 0
+$${#eq-2} 
+
+From @eq-1 we can ignore the constant -2 and redistribute the summation.  
+
+$$
+\sum_{i=1}^N y_i - \sum_{i=1}^N \beta_0 - \sum_{i=1}^N \beta_1x_i = 0
+$$
+
+Giving:  
+
+$$
+N \bar{y} - N \beta_0 - N \beta_i \bar{x} = 0
+$$  
+
+Which simplifies to: 
+
+$$
+\beta_0 = \bar{y} - \beta_1 \bar{x}
+$${#eq-beta0} 
+
+From @eq-2 we can ignore the -2 and distribute the $x_i$:   
+
+$$
+\sum_{i=1}^N y_i x_i - \beta_0 x_i - \beta_1 x_i^2 = 0
+$$ 
+
+Substituting @eq-beta0 and distributing the summation we get:  
+
+$$
+\sum_{i=1}^N x_i y_i - \bar{y} \sum_{i=1}^N x_i + \beta_1 \bar{x} \sum_{i=1}^N  x_i - \beta_1 \sum_{i=1}^N  x_i^2 = 0
+$$ 
+
+Solving for $\beta_1$ gives:  
+
+$$
+\beta_1 = \frac{ \sum_{i=1}^N x_iy_i - N \bar{x} \bar{y} }{\sum_{i=1}^N x_i^2 - N\bar{x}^2}
+$$
+
+Which simplifies to: 
+
+
+$$
+\beta_1 = \frac{\sum_{i=1}^N (x_i-\bar{x})(y_i - \bar{y})}{ \sum_{i=1}^N (x_i - \bar{x}) }
+$${#eq-beta1}
+
+Now we have a closed-form expression for both $\beta_0$ [@eq-beta0] and $\beta_1$ [@eq-beta1].  
+
+:::{.callout-note}
+This can extend to more than simple linear regression but would involve an expression in matrix notation. For more complex regression models, other methods are used such as maximum likelihood estimation (MLE). This is beyond the scope of this course. 
+:::
+
+Let's try to manually verify this by calculating the regression coefficients by hand. We can compare this to the R output in @sec-slr. 
+
+```{r}
+#| message: false 
+
+library(dplyr)
+library(palmerpenguins)
+
+dat <- penguins |>
+    select(body_mass_g, flipper_length_mm) |>
+    na.omit() 
+
+x <- dat$flipper_length_mm
+y <- dat$body_mass_g      
+
+b_1 <- sum((x - mean(x)) * (y - mean(y))) / sum((x - mean(x))^2)
+b_0 <- mean(y) - b_1 * mean(x)
+
+b_0
+b_1
+
+```
