@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sophie Lee">
-<meta name="author" content="Dean Marchiori">
 
-<title>Introduction to Regression Analysis with R</title>
+<title>1&nbsp; Introduction – Introduction to Regression Analysis with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,62 +20,29 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/01_intro.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8d436d74498bbd5457388a3efe09766c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-9828a0d4182cd2b8e9a8025f57f806eb.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/02_pre_regression.html" rel="next">
+<link href="../index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8d436d74498bbd5457388a3efe09766c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9828a0d4182cd2b8e9a8025f57f806eb.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -116,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Introduction to Regression Analysis with R</span>
     </a>
   </div>
@@ -134,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="./Introduction-to-Regression-Analysis-with-R.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="../Introduction-to-Regression-Analysis-with-R.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
@@ -144,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01_intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -158,37 +123,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/01_intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/01_intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/02_pre_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/02_pre_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparing for linear regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/03_linear_reg.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/03_linear_reg.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Linear regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/04_glm.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/04_glm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Generalised linear models</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/05_discussion.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/05_discussion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Discussion</span></span></a>
   </div>
 </li>
@@ -203,25 +168,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/data_description.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/data_description.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Data description</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/exercise_solutions.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/exercise_solutions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Exercise solutions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/ols.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/ols.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Mathematical Derivation of OLS</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/setup.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Setup</span></span></a>
   </div>
 </li>
@@ -237,14 +202,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
-  <ul class="collapse">
-  <li><a href="#how-to-use-this-book" id="toc-how-to-use-this-book" class="nav-link" data-scroll-target="#how-to-use-this-book">How to use this book</a></li>
-  <li><a href="#data-used-in-the-course" id="toc-data-used-in-the-course" class="nav-link" data-scroll-target="#data-used-in-the-course">Data used in the course</a></li>
-  <li><a href="#feedback-and-issues" id="toc-feedback-and-issues" class="nav-link" data-scroll-target="#feedback-and-issues">Feedback and issues</a></li>
-  <li><a href="#contact-me" id="toc-contact-me" class="nav-link" data-scroll-target="#contact-me">Contact Me</a></li>
-  <li><a href="#licence-and-attribution" id="toc-licence-and-attribution" class="nav-link" data-scroll-target="#licence-and-attribution">Licence and Attribution</a></li>
-  </ul></li>
+  <li><a href="#what-is-a-model" id="toc-what-is-a-model" class="nav-link active" data-scroll-target="#what-is-a-model"><span class="header-section-number">1.1</span> What is a model?</a></li>
+  <li><a href="#which-type-of-regression-should-i-use" id="toc-which-type-of-regression-should-i-use" class="nav-link" data-scroll-target="#which-type-of-regression-should-i-use"><span class="header-section-number">1.2</span> Which type of regression should I use?</a></li>
+  <li><a href="#why-regression" id="toc-why-regression" class="nav-link" data-scroll-target="#why-regression"><span class="header-section-number">1.3</span> Why regression?</a></li>
+  <li><a href="#notes-on-r-coding-style" id="toc-notes-on-r-coding-style" class="nav-link" data-scroll-target="#notes-on-r-coding-style"><span class="header-section-number">1.4</span> Notes on R coding style</a></li>
   </ul>
 </nav>
     </div>
@@ -253,20 +214,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction to Regression Analysis with R</h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p>Sophie Lee </p>
-             <p>Dean Marchiori </p>
-          </div>
-  </div>
     
   
     
@@ -277,27 +231,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome</h1>
-<p>Welcome to the course materials for the Introduction to Regression Analysis with R short course.</p>
-<p>This course provides a comprehensive understanding of regression analysis, including the theory behind these models, their application in R, validation techniques, and the interpretation of results. The course begins with an introduction to linear regression models, before advancing to the more flexible family of generalised linear models.</p>
-<p>Topics covered as part of this course include:</p>
-<ul>
-<li>Linear regression: concepts, assumptions, application, and interpretations</li>
-<li>Diagnostics and validation of linear regression models</li>
-<li>Generalised linear models: beyond continuous outcomes</li>
-<li>Poisson regression: how to model counts and rates, and how this differs from linear regression</li>
-<li>Best practices in communicating results of regression analysis</li>
-</ul>
-<section id="how-to-use-this-book" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-use-this-book">How to use this book</h2>
-<p>This book provides a combination of written explanations, code examples, and practical exercises to allow you to practice what you have learned.</p>
-<p>Code examples will be provided in code blocks, such as this one:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Code in these blocks can be copied and pasted into your R session to save time when coding. We recommend typing the code yourself to familiarise yourself with the coding process and use the copy option if you are really stuck!</p>
-<p>Throughout the book, you will see colour-coded boxes which are used to highlight important points, give warnings, or give tips such as keyboard shortcuts.</p>
+<section id="what-is-a-model" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-a-model"><span class="header-section-number">1.1</span> What is a model?</h2>
+<p>Modelling is a process that is carried out across many different fields for a wide variety of reasons. Models aim to explain complex processes in as simple terms as possible. The goal of modelling may be to make predictions based on observed values, or to gain insights into the process, while accounting for multiple pieces of data.</p>
+<p>In statistics, regression models aim to quantify the relationship between an outcome and one or more explanatory variables using a mathematical equation. They are a powerful and widely used tool that can allow us to make inferences about these underlying relationships whilst accounting for background factors.</p>
+</section>
+<section id="which-type-of-regression-should-i-use" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="which-type-of-regression-should-i-use"><span class="header-section-number">1.2</span> Which type of regression should I use?</h2>
+<p>This course will focus mostly on <strong>linear models</strong>: models with a single continuous outcome variable that assume the process can be described using a linear equation.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -308,80 +249,37 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These boxes will be used to highlight important messages, supplementing the main text.</p>
+<p>This does not mean that the relationships between variables must be linear. We will see later in the course how models can be extended to account for nonlinear relationships.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<p>We will use linear regression models to address a research question with real-world data. Through the course, you will learn how to fit linear regression models, interpret their outcomes, ways in which models can be extended and improved, how to check models are valid, and finally how to answer the initial research question using regression.</p>
+<p>Later in the course, we will see how these linear models can be generalised to outcome variables beyond continuous measures, and how these model interpretations differ. Finally, we will end with a discussion about alternative models that are available beyond those covered in the course.</p>
+</section>
+<section id="why-regression" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="why-regression"><span class="header-section-number">1.3</span> Why regression?</h2>
+<p>As with any other type of statistical analysis, we must always keep in mind the reason for carrying it out. Research questions are an often overlooked but fundamental part of any analysis plan, and should be fully defined before we carry out any analysis, or even collect any data!</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Hint
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>These boxes will contain useful hints, such as keyboard shortcuts, that can make your coding life a little easier!</p>
+<p>Research questions should be clear, concise and <em>answerable</em>! For a more detailed introduction to research question generation, including the <strong>PICO</strong> approach and worked examples, check out <a href="https://stats-thinking.netlify.app/01_research_qs">these notes</a>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>These boxes will contain warnings and highlight areas where you need to be more cautious in your coding or analysis.</p>
-</div>
-</div>
-<p>To make these notes as accessible as possible, they are available to view in dark mode by toggling the <img src="images/dark_mode.png" class="img-fluid"> button. They are also available to download as a PDF file using the <img src="images/pdf.png" class="img-fluid"> button.</p>
-<p>All exercise solutions are available in the <a href="exercise_solutions.qmd">appendices</a>. Please attempt the exercises yourself first, making full use of R’s built in help files, <a href="https://posit.co/resources/cheatsheets/">cheatsheets</a> (where available), and example R code in this book. Going straight to the solutions to copy and paste the code without thinking will not help you after the course!</p>
-<p>Some exercises contain expandable hints, such as functions required to complete them, that can be viewed when needed. For example:</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Exercise hint
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The functions you will need for this exercise are <code>filter</code> and <code>count</code>.</p>
-</div>
-</div>
-</div>
+<p>Throughout most of this course, we will be trying to answer questions about penguins in the Palmer Archipelago, Antarctica. Our research question for this course will be:</p>
+<p><strong>Is body mass of penguins in the Palmer Archipelago related to their flipper size?</strong></p>
 </section>
-<section id="data-used-in-the-course" class="level2">
-<h2 class="anchored" data-anchor-id="data-used-in-the-course">Data used in the course</h2>
-<p>The examples and exercises in these materials are based on real world data.</p>
-<p>Data for this course can be downloaded from the <code>data</code> folder of this course’s <a href="https://github.com/deanmarchiori/regression_course">repository</a>.</p>
-<p>For more information about this data, including variable descriptions and sources, see <a href="data_description.qmd">the appendix</a>.</p>
-</section>
-<section id="feedback-and-issues" class="level2">
-<h2 class="anchored" data-anchor-id="feedback-and-issues">Feedback and issues</h2>
-<p>If you spot a bug or mistake in these notes, please let me know by <a href="https://github.com/deanmarchiori/regression_course/issues">raising an issue</a>.</p>
-</section>
-<section id="contact-me" class="level2">
-<h2 class="anchored" data-anchor-id="contact-me">Contact Me</h2>
-<p>If you enjoyed this course and would like me to run a session for your organisation, or if you would like to engage me as a consultant on a project get in touch at <a href="https://www.deanmarchiori.com/">deanmarchiori.com</a></p>
-</section>
-<section id="licence-and-attribution" class="level2">
-<h2 class="anchored" data-anchor-id="licence-and-attribution">Licence and Attribution</h2>
-<p>I believe that science should not be behind a paywall, that is why these materials are available for free online, in accordance with the licence.</p>
-<p>This work is an adaptation of original work “Regression with R”. The material has been modified, to compare against the original works see <a href="https://github.com/deanmarchiori/regression_course/tree/original">here</a>.</p>
-<p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
-<a property="dct:title" rel="cc:attributionURL" href="https://github.com/sophie-a-lee/regression_course">Regressions with R short course</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/sophie-a-lee">Sophie Lee</a> is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Creative Commons Attribution-ShareAlike 4.0 International<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a>
-</p>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a>.</p>
+<section id="notes-on-r-coding-style" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="notes-on-r-coding-style"><span class="header-section-number">1.4</span> Notes on R coding style</h2>
+<p>To ensure that this course is as useful as possible to those attending, all theory will be supplemented with worked example using the <a href="https://www.r-project.org/about.html">R programming language</a>. If you have never used R before, please refer to the <a href="../chapters/setup.html">setup instructions</a> at the end of these materials.</p>
+<p>There are many approaches to coding within R. In this course, we will be using the <a href="https://style.tidyverse.org/"><code>tidyverse</code></a> approach. This approach requires the <code>tidyverse</code> suite of packages to be installed and loaded into the current R session, which we will cover in the next chapter.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -948,10 +846,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../index.html" class="pagination-link" aria-label="Welcome">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/01_intro.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/02_pre_regression.html" class="pagination-link" aria-label="Preparing for linear regression">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Preparing for linear regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

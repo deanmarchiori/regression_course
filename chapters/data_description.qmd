@@ -1,0 +1,26 @@
+# Data description 
+
+## Palmer Penguins  
+
+Information about this data are available from [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/)
+
+
+```{r}
+data(penguins, package = "palmerpenguins")
+```
+
+
+```{r}
+skimr::skim(penguins)
+```
+
+## Cancer Registry
+
+```{r}
+cancer_reg <- readr::read_csv(here::here("data/cancer_reg.csv")) 
+```
+
+
+```{r}
+skimr::skim(cancer_reg)
+```

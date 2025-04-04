@@ -1,0 +1,36 @@
+# Introduction 
+
+## What is a model?
+Modelling is a process that is carried out across many different fields for a wide variety of reasons. Models aim to explain complex processes in as simple terms as possible. The goal of modelling may be to make predictions based on observed values, or to gain insights into the process, while accounting for multiple pieces of data.
+
+In statistics, regression models aim to quantify the relationship between an outcome and one or more explanatory variables using a mathematical equation. They are a powerful and widely used tool that can allow us to make inferences about these underlying relationships whilst accounting for background factors. 
+
+## Which type of regression should I use?
+This course will focus mostly on **linear models**: models with a single continuous outcome variable that assume the process can be described using a linear equation.
+
+:::{.callout-note}
+This does not mean that the relationships between variables must be linear. We will see later in the course how models can be extended to account for nonlinear relationships.
+:::
+
+We will use linear regression models to address a research question with real-world data. Through the course, you will learn how to fit linear regression models, interpret their outcomes, ways in which models can be extended and improved, how to check models are valid, and finally how to answer the initial research question using regression. 
+
+Later in the course, we will see how these linear models can be generalised to outcome variables beyond continuous measures, and how these model interpretations differ. Finally, we will end with a discussion about alternative models that are available beyond those covered in the course. 
+
+## Why regression?
+As with any other type of statistical analysis, we must always keep in mind the reason for carrying it out. Research questions are an often overlooked but fundamental part of any analysis plan, and should be fully defined before we carry out any analysis, or even collect any data! 
+
+:::{.callout-note}
+Research questions should be clear, concise and *answerable*! For a more detailed introduction to research question generation, including the **PICO** approach and worked examples, check out [these notes](https://stats-thinking.netlify.app/01_research_qs).
+:::
+
+Throughout most of this course, we will be trying to answer questions about penguins in the Palmer Archipelago, Antarctica. Our research question for this course will be:
+
+**Is body mass of penguins in the Palmer Archipelago related to their flipper size?**
+
+## Notes on R coding style
+To ensure that this course is as useful as possible to those attending, all theory will be supplemented with worked example using the [R programming language](https://www.r-project.org/about.html). If you have never used R before, please refer to the [setup instructions](setup.qmd) at the end of these materials. 
+
+There are many approaches to coding within R. In this course, we will be using the [`tidyverse`](https://style.tidyverse.org/) approach. This approach requires the `tidyverse` suite of packages to be installed and loaded into the current R session, which we will cover in the next chapter.
+
+
+

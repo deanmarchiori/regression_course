@@ -3,33 +3,34 @@ project:
   output-dir: docs
 
 book:
-  title: "Regressions with R"
-  author: "Sophie Lee"
+  title: "Introduction to Regression Analysis with R"
+  author: 
+    - "Sophie Lee"
+    - "Dean Marchiori"
   downloads: [pdf]  
   search: true
   navbar:
     right: 
       - icon: github
-        href: https://github.com/sophie-a-lee/
+        href: https://github.com/deanmarchiori/regression_course
         aria-label: Github
-      - icon: cup-hot
-        href: https://buymeacoffee.com/sophie_a_lee
-        aria-label: Buy me a coffee
   chapters:
     - index.qmd
-    - 01_intro.qmd
-    - 02_pre_regression.qmd
-    - 03_linear_reg.qmd
-    - 04_glm.qmd
-    - 05_discussion.qmd
+    - chapters/01_intro.qmd
+    - chapters/02_pre_regression.qmd
+    - chapters/03_linear_reg.qmd
+    - chapters/04_glm.qmd
+    - chapters/05_discussion.qmd
   appendices: 
-    - data_description.qmd
-    - exercise_solutions.qmd
+    - chapters/data_description.qmd
+    - chapters/exercise_solutions.qmd
+    - chapters/ols.qmd
+    - chapters/setup.qmd
 
 format:
   html:
     theme:
-      light: [pulse, style.scss]
+      light: flatly
       dark: darkly
   pdf: 
     theme: scrbook
