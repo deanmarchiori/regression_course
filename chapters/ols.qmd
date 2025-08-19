@@ -58,7 +58,7 @@ $$
 Giving:  
 
 $$
-N \bar{y} - N \beta_0 - N \beta_i \bar{x} = 0
+N \bar{y} - N \beta_0 - N \beta_1 \bar{x} = 0
 $$  
 
 Which simplifies to: 
@@ -89,7 +89,7 @@ Which simplifies to:
 
 
 $$
-\beta_1 = \frac{\sum_{i=1}^N (x_i-\bar{x})(y_i - \bar{y})}{ \sum_{i=1}^N (x_i - \bar{x}) }
+\beta_1 = \frac{\sum_{i=1}^N (x_i-\bar{x})(y_i - \bar{y})}{ \sum_{i=1}^N (x_i - \bar{x})^2 }
 $${#eq-beta1}
 
 Now we have a closed-form expression for both $\beta_0$ [@eq-beta0] and $\beta_1$ [@eq-beta1].  
@@ -101,17 +101,17 @@ This can extend to more than simple linear regression but would involve an expre
 Let's try to manually verify this by calculating the regression coefficients by hand. We can compare this to the R output in @sec-slr. 
 
 ```{r}
-#| message: false 
+#| message: false
 
 library(dplyr)
 library(palmerpenguins)
 
 dat <- penguins |>
     select(body_mass_g, flipper_length_mm) |>
-    na.omit() 
+    na.omit()
 
 x <- dat$flipper_length_mm
-y <- dat$body_mass_g      
+y <- dat$body_mass_g
 
 b_1 <- sum((x - mean(x)) * (y - mean(y))) / sum((x - mean(x))^2)
 b_0 <- mean(y) - b_1 * mean(x)

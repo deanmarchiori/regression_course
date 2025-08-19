@@ -322,7 +322,7 @@ y_i = \beta_0 + x_i\beta_1 + \epsilon_i
 \]</span></p>
 <p>Giving:</p>
 <p><span class="math display">\[
-N \bar{y} - N \beta_0 - N \beta_i \bar{x} = 0
+N \bar{y} - N \beta_0 - N \beta_1 \bar{x} = 0
 \]</span></p>
 <p>Which simplifies to:</p>
 <p><span id="eq-beta0"><span class="math display">\[
@@ -342,7 +342,7 @@ N \bar{y} - N \beta_0 - N \beta_i \bar{x} = 0
 \]</span></p>
 <p>Which simplifies to:</p>
 <p><span id="eq-beta1"><span class="math display">\[
-\beta_1 = \frac{\sum_{i=1}^N (x_i-\bar{x})(y_i - \bar{y})}{ \sum_{i=1}^N (x_i - \bar{x}) }
+\beta_1 = \frac{\sum_{i=1}^N (x_i-\bar{x})(y_i - \bar{y})}{ \sum_{i=1}^N (x_i - \bar{x})^2 }
 \tag{C.4}\]</span></span></p>
 <p>Now we have a closed-form expression for both <span class="math inline">\(\beta_0\)</span> <a href="#eq-beta0" class="quarto-xref">Equation&nbsp;<span>C.3</span></a> and <span class="math inline">\(\beta_1\)</span> <a href="#eq-beta1" class="quarto-xref">Equation&nbsp;<span>C.4</span></a>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -365,10 +365,10 @@ Note
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(body_mass_g, flipper_length_mm) <span class="sc">|&gt;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>() </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">na.omit</span>()</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> dat<span class="sc">$</span>flipper_length_mm</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> dat<span class="sc">$</span>body_mass_g      </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> dat<span class="sc">$</span>body_mass_g</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>b_1 <span class="ot">&lt;-</span> <span class="fu">sum</span>((x <span class="sc">-</span> <span class="fu">mean</span>(x)) <span class="sc">*</span> (y <span class="sc">-</span> <span class="fu">mean</span>(y))) <span class="sc">/</span> <span class="fu">sum</span>((x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>b_0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(y) <span class="sc">-</span> b_1 <span class="sc">*</span> <span class="fu">mean</span>(x)</span>

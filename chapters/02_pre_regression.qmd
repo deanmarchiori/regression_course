@@ -85,6 +85,16 @@ data(penguins, package = "palmerpenguins") # <2>
 
 When loading any data into R, we must run some checks to ensure it has been read in correctly. This includes checking all variables we expect are present, variable names are in a [tidy format](https://style.tidyverse.org/), and that variables have been recognised as the correct type.
 
+### Tidy Data  
+
+As defined in [R for Data Science](https://r4ds.had.co.nz/tidy-data.html): 
+
+1. Each variable must have its own column.
+2. Each observation must have its own row.
+3. Each value must have its own cell.  
+
+![Source: https://r4ds.had.co.nz/tidy-data.html](../images/tidy-1.png)
+
 ::: {.callout-tip}
 Variable names should contain only lower case letters, numbers and underscores `_`. They should be clear and descriptive. If you are reading data from a particularly messy source, the `janitor` R package contains the [`clean_names` function](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html#clean-dataframe-names-with-clean_names) that converts existing variable names into a 'tidy' alternative.
 :::
@@ -185,7 +195,6 @@ Correlation coefficients take values between -1 and 1, with 0 representing no as
 
 ```{r}
 #| label: correlation
-
 cor(penguins$body_mass_g, penguins$flipper_length_mm,
     use = "complete.obs"
 ) # <1>

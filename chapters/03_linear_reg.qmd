@@ -148,7 +148,7 @@ $$
 body mass = `{r} round(lm_flipper$coefficients[1], 2)` + `{r} round(lm_flipper$coefficients[2], 2)` \times flipper length
 $$
 
-As the linear equation assumes an additive relationship between the outcome nad covariate, we can use this to make estimates about differences in the outcome based on the difference in covariate. For example, if there were two penguins and one had flippers that were 1cm (10mm) longer, we would expect their body mass to be (`{r} round(lm_flipper$coefficients[2], 2)` $\times$ 10 =) `{r} round(lm_flipper$coefficients[2], 2) * 10` heavier.  
+As the linear equation assumes an additive relationship between the outcome and covariate, we can use this to make estimates about differences in the outcome based on the difference in covariate. For example, if there were two penguins and one had flippers that were 1cm (10mm) longer, we would expect their body mass to be (`{r} round(lm_flipper$coefficients[2], 2)` $\times$ 10 =) `{r} round(lm_flipper$coefficients[2], 2) * 10` heavier.  
 
 This line can be added to the scatterplot to visualise the results:
 
@@ -397,11 +397,98 @@ Both metrics agree that the model containing species was better at predicting th
 Before communicating the results of a model, we must ensure that the model we have used is valid and appropriate for the data. Linear regression is a [parametric method]{.highlight} which means there are assumptions that must be checked to ensure that the model we are using is appropriate. Linear regression assumptions can be remembered using the **LINE** acronym:
 
 - **L**inearity: the relationship between the (mean) outcome and explanatory variable(s) can be described using a linear equation
-- **I**ndependence: explanatory variables must be independent of one another
-- **N**ormally distributed residuals: model error terms must follow a normal distribution
-- **E**quivalent variance: residuals must have a constant variance across all values of the outcome (also known as **heteroskedasticity**)
+- **I**ndependence of errors: The residuals (errors) are independent  
+- **N**ormally distributed errors: The residuals should be approximately normally distributed.
+- **E**quivalent variance: The variance of the residuals is constant across all levels of the independent variables. (also known as **homoskedasticity**)
 
-### Multicollinearity
+
+### Linearity  
+
+One of the major assumptions underpinning linear models is that the mean outcome can be described as a linear equation of the covariates present in the model. Where there is only a single numeric variable or one numeric and one categorical variable, this assumption can be checked using a scatterplot. However, when models become more complex, we are no longer able to check this assumption graphically. 
+
+A better approach to checking the linearity assumption of regression models is to plot a scatterplot of model residuals against each covariate. If the assumption of linearity is valid, residual points should be randomly scattered around 0 without any obvious patterns. To produce these plots, we simply extract the residuals using `resid` and produce a scatterplot using `ggplot` and `geom_point`:
+
+```{r}
+#| label: linearity
+
+penguins_resid <- lm_flipper_spec$model %>% #<1>
+    mutate(
+        residuals_flipper_spec = resid(lm_flipper_spec),
+        fitted_flipper_spec = predict(lm_flipper_spec)
+    )
+
+ggplot(data = penguins_resid) +
+    geom_point(aes(x = flipper_length_mm, y = residuals_flipper_spec)) +
+    labs(y = "residuals", x = "flipper length (mm)") +
+    geom_hline(yintercept = 0, colour = "red") + #<2>
+    theme_light(base_size = 12)
+
+ggplot(data = penguins_resid) +
+    geom_point(aes(x = species, y = residuals_flipper_spec)) +
+    labs(y = "residuals", x = "species") +
+    geom_hline(yintercept = 0, colour = "red") + #<3>
+    theme_light(base_size = 12)
+```
+
+1. Use the model data to remove missing values and avoid differences in variable lengths
+2. Adding a reference line where residuals = 0 can help check this assumption
+3. Adding a reference line where residuals = 0 can help check this assumption
+
+Both plots show residuals randomly scattered around the reference line of 0, with no patterns in the points. This indicates that the assumption of linearity is valid in this case.
+
+:::{.callout-warning}
+Where the assumption of linearity is not appropriate, steps must be taken to resolve this or another method must be used. 
+
+One way to overcome lack of linearity is to transform the covariate that does not adhere to this assumption. For example, if the relationship between the outcome and a covariate is more curved than linear, a polynomial term ($x^2$) may be considered. Be cautious when applying transformations as this will change the interpretation of model coefficients (they will no longer be on the same scale as the original data).
+
+If simple transformations will not overcome a lack of linearity, or where we need coefficients to be interpretable on the data scale, we could consider [generalised additive models]{.highlight}, an alternative statistical modelling approach that can be used to model nonlinear relationships. 
+:::
+
+
+### Normally distributed residuals  
+
+Residuals are calculated by finding the difference between the observed outcome from the data and the predicted outcome using the model. Large residuals are an indication of poor model fit and can be used to improve a model. Residuals can be obtained from a model object in R using the `resid` function. 
+
+```{r}
+#| label: residual-example
+#| echo: false
+#| message: false
+#| warning: false
+
+df_resid <- tibble(x = rnorm(15),
+                   resid = rnorm(n = 15),
+                   y = 2.6 + (x*1.5) + resid)
+
+lm_resid <- lm(y ~ x, data = df_resid)
+ggplot(data = df_resid, 
+       aes(x = x, y = y)) +
+  geom_point() +
+  geom_smooth(method = "lm", colour = "red", se = FALSE) +
+  annotate("segment", x = df_resid$x, xend = df_resid$x,
+           y =  df_resid$y, yend = predict(lm_resid)) +
+  annotate("text", x = (df_resid$x[4] -.3), 
+           y = df_resid$y[4], label = "residual") +
+  theme_light(base_size = 12)
+```
+  
+
+A common misconception about linear regression is that the outcome variable must be normally distributed. This is not the case, but the residuals must be. This can be easily checked using a histogram:
+
+```{r}
+#| label: resid-hist
+#| message: false
+
+ggplot(data = penguins_resid) +
+  geom_histogram(aes(x = residuals_flipper_spec), 
+                 colour = "black", fill = "grey45") +
+  labs(x = "residuals") +
+  theme_light(base_size = 12)
+```
+
+The histogram shows residuals follow an approximately normal distribution, centred around 0. Another method is to use the defaul QQ plots in the model diagnostic output.  
+
+### Multicollinearity  
+
 Multicollinearity occurs when one or more of the explanatory variables can be explained by other covariates in the model. In other words, the explanatory variables are not independent of one another. When multicollinearity exists within a model, coefficient estimates become unstable and results may no longer be valid. The level of dependence between continuous covariates can be quantified using the [variance inflation factor]{.highlight} (VIF).
 
 The VIF is estimated for each covariate, $X_i$, by fitting a linear model where $X_i$ is set as the outcome, with all other covariates included as explanatory variables. The VIF of this coefficient is estimated using the R-squared value of that model:
@@ -441,96 +528,16 @@ Both GSEIF values are below the cut-off value, indicating there is no issue with
 Where there is evidence of multicollinearity in a model, one or more of the covariates causing the issue must be removed from the model. Otherwise, coefficient estimates will be unstable and inferential results may be invalid.
 :::
 
-### Residuals
-The other three assumptions of linear regression can be checked using residuals, or error terms. Residuals are calculated by finding the difference between the observed outcome from the data and the predicted outcome using the model. Large residuals are an indication of poor model fit and can be used to improve a model. Residuals can be obtained from a model object in R using the `resid` function. 
-
-```{r}
-#| label: residual-example
-#| echo: false
-#| message: false
-#| warning: false
-
-df_resid <- tibble(x = rnorm(15),
-                   resid = rnorm(n = 15),
-                   y = 2.6 + (x*1.5) + resid)
-
-lm_resid <- lm(y ~ x, data = df_resid)
-ggplot(data = df_resid, 
-       aes(x = x, y = y)) +
-  geom_point() +
-  geom_smooth(method = "lm", colour = "red", se = FALSE) +
-  annotate("segment", x = df_resid$x, xend = df_resid$x,
-           y =  df_resid$y, yend = predict(lm_resid)) +
-  annotate("text", x = (df_resid$x[4] -.3), 
-           y = df_resid$y[4], label = "residual") +
-  theme_light(base_size = 12)
-```
-
-### Linearity
-One of the major assumptions underpinning linear models is that the mean outcome can be described as a linear equation of the covariates present in the model. Where there is only a single numeric variable or one numeric and one categorical variable, this assumption can be checked using a scatterplot. However, when models become more complex, we are no longer able to check this assumption graphically. 
-
-A better approach to checking the linearity assumption of regression models is to plot a scatterplot of model residuals against each covariate. If the assumption of linearity is valid, residual points should be randomly scattered around 0 without any obvious patterns. To produce these plots, we simply extract the residuals using `resid` and produce a scatterplot using `ggplot` and `geom_point`:
-
-```{r}
-#| label: linearity
-
-penguins_resid <- lm_flipper_spec$model %>% #<1>
-  mutate(residuals_flipper_spec = resid(lm_flipper_spec))
-
-ggplot(data = penguins_resid) +
-  geom_point(aes(x = flipper_length_mm, y = residuals_flipper_spec)) +
-  labs(y = "residuals", x = "flipper length (mm)") +
-  geom_hline(yintercept = 0, colour = "red") + #<2>
-  theme_light(base_size = 12)
-
-ggplot(data = penguins_resid) +
-  geom_point(aes(x = species, y = residuals_flipper_spec)) +
-  labs(y = "residuals", x = "species") +
-  geom_hline(yintercept = 0, colour = "red") + #<3>
-  theme_light(base_size = 12)
-```
-
-1. Use the model data to remove missing values and avoid differences in variable lengths
-2. Adding a reference line where residuals = 0 can help check this assumption
-3. Adding a reference line where residuals = 0 can help check this assumption
-
-Both plots show residuals randomly scattered around the reference line of 0, with no patterns in the points. This indicates that the assumption of linearity is valid in this case.
-
-:::{.callout-warning}
-Where the assumption of normality is not appropriate, steps must be taken to resolve this or another method must be used. 
-
-One way to overcome lack of linearity is to transform the covariate that does not adhere to this assumption. For example, if the relationship between the outcome and a covariate is more curved than linear, a polynomial term ($x^2$) may be considered. Be cautious when applying transformations as this will change the interpretation of model coefficients (they will no longer be on the same scale as the original data).
-
-If simple transformations will not overcome a lack of linearity, or where we need coefficients to be interpretable on the data scale, we could consider [generalised additive models]{.highlight}, an alternative statistical modelling approach that can be used to model nonlinear relationships. 
-:::
-
-### Normally distributed residuals
-A common misconception about linear regression is that the outcome variable must be normally distributed. This is not the case, but the residuals must be. This can be easily checked using a histogram:
-
-```{r}
-#| label: resid-hist
-#| message: false
-
-ggplot(data = penguins_resid) +
-  geom_histogram(aes(x = residuals_flipper_spec), 
-                 colour = "black", fill = "grey45") +
-  labs(x = "residuals") +
-  theme_light(base_size = 12)
-```
-
-The histogram shows residuals follow an approximately normal distribution, centred around 0.
-
-### Heteroskedasticity
-The final assumption to check when using linear regression is that the residuals have a constant variance across all observations. This can be checked using a scatterplot of the residuals against the observed outcome. We would hope to see points scattered randomly around 0. If the variance is not constant, for example if we observe a funnel shape, we must rethink our model:
+### Homoskedasticity  
+The final assumption to check when using linear regression is that the residuals have a constant variance across all observations. This can be checked using a scatterplot of the residuals against the predicted values. We would hope to see points scattered randomly around 0. If the variance is not constant, for example if we observe a funnel shape, we must rethink our model:
 
 ```{r}
 #| label: resid-variance
-
 ggplot(data = penguins_resid) +
-  geom_point(aes(x = body_mass_g, y = residuals_flipper_spec)) +
-  geom_hline(yintercept = 0, colour = "red") +
-  labs(x = "body mass (g)", y = "residuals") +
-  theme_light(base_size = 12)
+    geom_point(aes(x = fitted_flipper_spec, y = residuals_flipper_spec)) +
+    geom_hline(yintercept = 0, colour = "red") +
+    labs(x = "fitted values", y = "residuals") +
+    theme_light(base_size = 12)
 ```
 
 This plot shows evidence of heteroskedasticity: as body mass increases, the variance of the residuals also appears to increase. Therefore, this model could not be used without improvements.
@@ -580,6 +587,11 @@ penguins %>%
 
 R contains a generic `plot` function that returns model diagnostic plots, including residual plots and Cook's distance when applied to a linear model object.
 :::
+
+```{r}
+par(mfrow = c(2, 2))
+plot(lm_flipper_spec)
+```
 
 ## Exercise 2 {.unnumbered}
 Using everything you have learned up to this point, use linear regression to answer the research question posed earlier:
