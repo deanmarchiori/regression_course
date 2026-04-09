@@ -12,4 +12,28 @@ All models must be checked to ensure that any assumptions are met and the result
 
 GLMs assume that the relationships between covariates and the (link-transformed) outcome are linear. Where this is not the case, covariates can be transformed before they are included into the model, for example polynomial regression. Where the relationship is more complex or unknown, consider generalised [additive]{.highlight} models (GAMs), which are able to for non-linear data.
 
-Finally, note that the models shown in these notes and exercise solutions are not definitive. Choice of model is often subjective and context-specific. 
+Finally, note that the models shown in these notes and exercise solutions are not definitive. Choice of model is often subjective and context-specific.  
+
+## 10 Quick Tips to Improve Your Regression Modelling  
+
+The following list of quick tips are adapted from the excellent *Regression and Other Stories*^[Gelman, A., Hill, J., & Vehtari, A. (2021). Regression and other stories. Cambridge University Press.].  
+
+1. **Think about variations and replication**  - How will your model perform if replicated on a new dataset, or if too impractical, a subset of the existing data.  
+
+2. F**orget about statistical significance** - Discretizing your results based on statistical tests throws away information and rarely reflects how the world works.   
+
+3. **Plot your model** - Make sure you graphically plot your predicted model, not just your raw data.  
+
+4. **Interpret regression coefficients as comparisons **- We are comparing an individual vs another where the regression coefficient is the modelled average difference in the outcome, holding all other factors constant.  
+
+5. **Use 'fake-data' simulations **- Improve your understanding by simulating fake data and test to see if your model correctly recovers the expected parameters.    
+
+6. **Fit many models** - Start simple and build complexity. Write things down and report all of your results.  
+
+7. **Set up a computational workflow **- Fit models faster by using smaller subsets of your data. Use fake data to help troubleshoot.  
+
+8. **Use transformations **- Consider transforming just about every variable in sight.  
+
+9. **Do causal inference in a targeted way **- Don't assume your comparison or regression coefficient can be interpreted causally.  
+
+10. **Learn models through live examples** - learn from examples you know and care about.  

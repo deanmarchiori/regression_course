@@ -197,8 +197,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#quick-tips-to-improve-your-regression-modelling" id="toc-quick-tips-to-improve-your-regression-modelling" class="nav-link active" data-scroll-target="#quick-tips-to-improve-your-regression-modelling"><span class="header-section-number">5.1</span> 10 Quick Tips to Improve Your Regression Modelling</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -232,8 +238,30 @@ ul.task-list li input[type="checkbox"] {
 <p>All models must be checked to ensure that any assumptions are met and the results are valid. All GLMs require observations to be independent of one another. This means that there is no clustering, repeated measures, or autocorrelation within the data. Where this assumption is not valid, multilevel models (also known as mixed effect, random effect, GLMMs, or hierarchical models) should be considered.</p>
 <p>GLMs assume that the relationships between covariates and the (link-transformed) outcome are linear. Where this is not the case, covariates can be transformed before they are included into the model, for example polynomial regression. Where the relationship is more complex or unknown, consider generalised <span class="highlight">additive</span> models (GAMs), which are able to for non-linear data.</p>
 <p>Finally, note that the models shown in these notes and exercise solutions are not definitive. Choice of model is often subjective and context-specific.</p>
+<section id="quick-tips-to-improve-your-regression-modelling" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="quick-tips-to-improve-your-regression-modelling"><span class="header-section-number">5.1</span> 10 Quick Tips to Improve Your Regression Modelling</h2>
+<p>The following list of quick tips are adapted from the excellent <em>Regression and Other Stories</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<ol type="1">
+<li><p><strong>Think about variations and replication</strong> - How will your model perform if replicated on a new dataset, or if too impractical, a subset of the existing data.</p></li>
+<li><p>F<strong>orget about statistical significance</strong> - Discretizing your results based on statistical tests throws away information and rarely reflects how the world works.</p></li>
+<li><p><strong>Plot your model</strong> - Make sure you graphically plot your predicted model, not just your raw data.</p></li>
+<li><p><strong>Interpret regression coefficients as comparisons </strong>- We are comparing an individual vs another where the regression coefficient is the modelled average difference in the outcome, holding all other factors constant.</p></li>
+<li><p><strong>Use ‘fake-data’ simulations </strong>- Improve your understanding by simulating fake data and test to see if your model correctly recovers the expected parameters.</p></li>
+<li><p><strong>Fit many models</strong> - Start simple and build complexity. Write things down and report all of your results.</p></li>
+<li><p><strong>Set up a computational workflow </strong>- Fit models faster by using smaller subsets of your data. Use fake data to help troubleshoot.</p></li>
+<li><p><strong>Use transformations </strong>- Consider transforming just about every variable in sight.</p></li>
+<li><p><strong>Do causal inference in a targeted way </strong>- Don’t assume your comparison or regression coefficient can be interpreted causally.</p></li>
+<li><p><strong>Learn models through live examples</strong> - learn from examples you know and care about.</p></li>
+</ol>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Gelman, A., Hill, J., &amp; Vehtari, A. (2021). Regression and other stories. Cambridge University Press.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
