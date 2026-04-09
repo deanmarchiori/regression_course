@@ -46,7 +46,7 @@ These boxes will contain warnings and highlight areas where you need to be more 
 
 To make these notes as accessible as possible, they are available to view in dark mode by toggling the ![](images/dark_mode.png) button. They are also available to download as a PDF file using the ![](images/pdf.png) button.
 
-All exercise solutions are available in the [appendices](exercise_solutions.qmd). Please attempt the exercises yourself first, making full use of R's built in help files, [cheatsheets](https://posit.co/resources/cheatsheets/) (where available), and example R code in this book. Going straight to the solutions to copy and paste the code without thinking will not help you after the course!
+All exercise solutions are available in the [appendices](chapters/exercise_solutions.qmd). Please attempt the exercises yourself first, making full use of R's built in help files, [cheatsheets](https://posit.co/resources/cheatsheets/) (where available), and example R code in this book. Going straight to the solutions to copy and paste the code without thinking will not help you after the course!
 
 Some exercises contain expandable hints, such as functions required to complete them, that can be viewed when needed. For example:
 
@@ -61,7 +61,7 @@ The examples and exercises in these materials are based on real world data.
 
 Data for this course can be downloaded from the `data` folder of this course's [repository](https://github.com/deanmarchiori/regression_course).
 
-For more information about this data, including variable descriptions and sources, see [the appendix](data_description.qmd).
+For more information about this data, including variable descriptions and sources, see [the appendix](chapters/data_description.qmd).
 
 ## Feedback and issues
 If you spot a bug or mistake in these notes, please let me know by [raising an issue](https://github.com/deanmarchiori/regression_course/issues).
